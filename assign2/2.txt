@@ -1,0 +1,24 @@
+set serveroutput on;
+
+declare
+
+	theId student.snum%TYPE := 31;
+	theName student.sname%TYPE := 'Kashim';
+	theMajor student.major%TYPE := 'EEE';
+	theSlevel student.Slevel%TYPE := 3;
+	theAge student.age%TYPE := 22;
+
+begin
+	loop
+
+	theId := theId + 1;
+
+	insert into student values(theId,theName,theMajor, theSlevel, theAge);
+
+	exit when theId >39;
+
+	end loop;
+
+end;
+/
+

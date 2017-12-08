@@ -1,0 +1,32 @@
+set serveroutput on;
+
+declare
+
+	theTaka money.taka%TYPE := 180;
+	theInc money.taka%TYPE  := 10;
+
+begin
+	theTaka := theTaka + theInc;
+	
+	if theTaka < 170
+		then
+		insert into money values (7, 'A', theTaka+theInc);
+
+	elsif theTaka <210 and theTaka >=170
+		then
+		insert into money values (7, 'B', theTaka+30);
+
+	else 
+	insert into money values (7, 'C', theTaka+theInc);
+
+	end if;
+ 
+commit;
+end;
+/
+
+
+-------if
+-------elsif
+-------else
+-------end if

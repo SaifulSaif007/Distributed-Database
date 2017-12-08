@@ -1,0 +1,49 @@
+set serveroutput on;
+
+declare
+
+ 	theId student.snum%TYPE;
+
+	theName student.sname%TYPE := 'Kashim';
+	theMajor student.major%TYPE := 'EEE';
+	theSlevel student.Slevel%TYPE := 3;
+	theAge student.age%TYPE := 22;
+	
+	theCount number := 0;
+
+
+	cursor cur_id is
+	select snum from student
+ 	order by snum desc;
+
+
+begin
+
+	open cur_id;
+	
+		fetch cur_id into theId; 
+	
+	
+		DBMS_OUTPUT.PUT_LINE('Last id :' || ' ' || TO_CHAR(theId));
+
+	close cur_id;
+
+	 
+	loop
+
+		theId := theId + 1;
+		theCount := theCount + 1;
+
+		  insert into student values (theId,theName,theMajor, theSlevel, theAge);
+
+		exit when theCount >= 10;
+
+	end loop;
+ 
+
+end;
+/
+
+
+ 
+ 

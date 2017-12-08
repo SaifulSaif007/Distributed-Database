@@ -1,0 +1,31 @@
+declare
+
+ theId 	money.id%TYPE 	 := 0;
+ theTaka money.taka%TYPE := 100;
+ thename money.name%TYPE := 'later';
+
+begin
+   
+	loop
+		theId := theId + 1;
+
+		insert into money values (theId,thename,theTaka);
+
+		if 
+ 			theId > 10
+		then
+			exit;
+		end if;
+
+	end loop;
+
+end;
+/
+
+
+---loop
+----if
+----then
+---exit
+---end if
+---end loop
