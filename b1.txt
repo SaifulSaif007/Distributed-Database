@@ -1,0 +1,38 @@
+Set serveroutput on;
+
+declare
+	
+	snum student.snum%TYPE;
+	sname student.sname%TYPE;
+	major student.major%TYPE;
+	slevel student.slevel%TYPE;
+	age  student.age%TYPE;
+
+ 
+	cursor s_info is
+	select * from student
+	where major = 'CSE';
+
+begin
+
+	open  s_info;
+
+	loop
+
+	fetch s_info into snum, sname, major, slevel, age;
+
+	
+	exit when s_info%notfound;
+	
+	DBMS_OUTPUT.PUT_LINE( TO_CHAR(snum) || ' ' || TO_CHAR(sname) || ' ' || TO_CHAR(major) || ' ' || TO_CHAR(slevel) || ' ' || TO_CHAR(age) );
+ 
+
+	end loop;
+		
+	close s_info;
+
+end;
+/
+
+
+	

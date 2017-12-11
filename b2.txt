@@ -1,0 +1,54 @@
+drop table less;
+drop table more;
+
+create table more(snum int, sname varchar2(20), major varchar2(10), slevel varchar2(2), age int);
+
+create table less(snum int, sname varchar2(20), major varchar2(10), slevel varchar2(2), age int);
+
+
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+	SNUM STUDENT.SNUM%TYPE;
+	SNAME STUDENT.SNAME%TYPE;
+	MAJOR STUDENT.MAJOR%TYPE;
+	SLEVEL STUDENT.SLEVEL%TYPE;
+	AGE STUDENT.AGE%TYPE;
+
+	
+	CURSOR CUR_SINFO IS
+	SELECT * FROM STUDENT;
+
+
+BEGIN
+ 
+	OPEN CUR_SINFO;
+	
+LOOP
+	FETCH CUR_SINFO INTO SNUM, SNAME, MAJOR, SLEVEL, AGE;
+
+	EXIT WHEN CUR_SINFO%NOTFOUND;
+
+	IF 
+		AGE < 20 
+			THEN
+	 
+			INSERT INTO LESS VALUES(SNUM, SNAME, MAJOR, SLEVEL,AGE);
+	
+	
+	ELSE 
+
+			INSERT INTO MORE VALUES(SNUM, SNAME, MAJOR, SLEVEL,AGE);
+
+	
+	END IF;
+
+	 
+
+END LOOP;
+
+	CLOSE CUR_SINFO;
+
+END;
+/
